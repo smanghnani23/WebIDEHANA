@@ -1,0 +1,6 @@
+COLUMN TABLE "MTA_HANA_1.modelinghdbmod.data::more_facts" 
+(
+   "ID" INTEGER, 
+   "SEASON" VARCHAR(4),
+   "DECADE" VARCHAR(5)
+)

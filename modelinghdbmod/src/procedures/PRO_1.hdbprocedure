@@ -1,0 +1,48 @@
+PROCEDURE "MTA_HANA_1.modelinghdbmod.procedures::PRO_1"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+
+select
+upstreamstructureid,
+downstreamstructureid,
+feederid,
+Cast(z_num_of_conductors as integer) as z_num_of_conductors
+from
+ "EAMP_REP"."CV_CUBE_WIRE_ATTRIBUTES"  A
+where
+Z_ASSET_STATUS = 'R'
+ 
+minus
+(
+select
+upstreamstructureid,
+downstreamstructureid,
+feederid,
+Cast(z_num_of_conductors as integer) as z_num_of_conductors
+from
+ "EAMP_REP"."CV_CUBE_WIRE_ATTRIBUTES"  A
+where
+Z_ASSET_STATUS = 'R'
+
+inner join (
+select
+upstreamstructureid,
+downstreamstructureid,
+feederid,
+Cast(z_num_of_conductors as integer) as z_num_of_conductors
+from
+ "EAMP_REP"."CV_CUBE_WIRE_ATTRIBUTES"  B
+where
+Z_ASSET_STATUS = 'A'
+)on 
+A.upstreamstructureid = B.upstreamstructureid
+AND A.downstreamstructureid = B.downstreamstructureid
+AND A.feederid = B.feederid
+AND A.z_num_of_conductors = B.z_num_of_conductors
+)
+
+
+END

@@ -1,0 +1,19 @@
+ID: MTA_HANA_1
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: modelinghdbmod
+   type: hdb
+   path: modelinghdbmod
+   requires:
+    - name: hdi_modelinghdbmod
+
+resources:
+ - name: hdi_modelinghdbmod
+   parameters:
+      config:
+         schema: FOOTBALL
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container

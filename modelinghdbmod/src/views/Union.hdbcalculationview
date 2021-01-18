@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="MTA_HANA_1.modelinghdbmod.views::Union" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" defaultClient="$$client$$">
+<descriptions defaultDescription="Union"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::facts">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::facts</resourceUri>
+  </DataSource>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::more_facts">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::more_facts</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Facts">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="SEASON"/>
+      <viewAttribute id="DECADE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MTA_HANA_1.modelinghdbmod.data::facts"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="More_Facts">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="SEASON"/>
+      <viewAttribute id="DECADE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MTA_HANA_1.modelinghdbmod.data::more_facts"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="SEASON"/>
+      <viewAttribute id="DECADE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Facts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEASON" source="SEASON"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DECADE" source="DECADE"/>
+    </input>
+    <input node="More_Facts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEASON" source="SEASON"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DECADE" source="DECADE"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Union_1" columnName="ID"/>
+    </attribute>
+    <attribute id="SEASON" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SEASON"/>
+      <keyMapping columnObjectName="Union_1" columnName="SEASON"/>
+    </attribute>
+    <attribute id="DECADE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DECADE"/>
+      <keyMapping columnObjectName="Union_1" columnName="DECADE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Facts" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000001" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="More_Facts" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

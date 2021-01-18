@@ -1,0 +1,4 @@
+COLUMN TABLE "MTA_HANA_1.modelinghdbmod.data::JoinDuplicate1" 
+(
+   "ID" NVARCHAR(2)
+)

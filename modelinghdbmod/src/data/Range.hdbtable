@@ -1,0 +1,5 @@
+COLUMN TABLE "MTA_HANA_1.modelinghdbmod.data::Range" 
+(
+   "ID" INTEGER, 
+   "Range" VARCHAR(100)
+)

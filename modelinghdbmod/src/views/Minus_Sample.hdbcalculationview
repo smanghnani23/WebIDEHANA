@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="MTA_HANA_1.modelinghdbmod.views::Minus_Sample" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Minus_Sample"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::Fruits">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::Fruits</resourceUri>
+  </DataSource>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::Colors">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::Colors</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:MinusView" id="Minus_1">
+    <viewAttributes>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MTA_HANA_1.modelinghdbmod.data::Fruits">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+    </input>
+    <input node="MTA_HANA_1.modelinghdbmod.data::Colors">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ID" null="true" value=""/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Minus_1">
+  <attributes>
+    <attribute id="NAME" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="Minus_1" columnName="NAME"/>
+    </attribute>
+    <attribute id="ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Minus_1" columnName="ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Minus_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="193"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

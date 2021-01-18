@@ -1,0 +1,5 @@
+COLUMN TABLE "MTA_HANA_1.modelinghdbmod.data::Sales" 
+(
+   "CUST_ID" NVARCHAR(10), 
+   "SALES" INTEGER
+)

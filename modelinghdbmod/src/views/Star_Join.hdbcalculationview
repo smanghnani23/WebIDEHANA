@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="MTA_HANA_1.modelinghdbmod.views::Star_Join" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Star_Join"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::other_facts">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::other_facts</resourceUri>
+  </DataSource>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.views::Union">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.views::Union</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="SEASON"/>
+      <viewAttribute id="TOP_SCORER_GOALS_SCORED" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$SEASON$SEASON"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="OVER_30" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <formula>if(&quot;TOP_SCORER_GOALS_SCORED&quot; &gt; 30, 1, 0)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="MTA_HANA_1.modelinghdbmod.data::other_facts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOP_SCORER_GOALS_SCORED" source="TOP_SCORER_GOALS_SCORED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SEASON$SEASON" source="SEASON"/>
+    </input>
+    <input node="MTA_HANA_1.modelinghdbmod.views::Union">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEASON" source="SEASON"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SEASON$SEASON" source="SEASON"/>
+    </input>
+    <joinAttribute name="JOIN$SEASON$SEASON"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join">
+  <attributes>
+    <attribute id="SEASON" hidden="true" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SEASON"/>
+      <keyMapping columnObjectName="Join" columnName="SEASON"/>
+    </attribute>
+    <attribute id="ID$local">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join" columnName="ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="TROPHY_COUNT" order="1" aggregationType="count" measureType="simple">
+      <descriptions defaultDescription="TROPHY_COUNT"/>
+      <measureMapping columnObjectName="Join" columnName="ID"/>
+    </measure>
+    <measure id="OVER_30" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="OVER_30"/>
+      <measureMapping columnObjectName="Join" columnName="OVER_30"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions>
+    <logicalJoin associatedObjectUri="MTA_HANA_1.modelinghdbmod.views::dimension">
+      <attributes>
+        <attributeRef>ID$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>ID</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
+      <associatedAttributeFeatures>
+        <attributeReference attributeName="ID" hidden="true"/>
+      </associatedAttributeFeatures>
+    </logicalJoin>
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="251"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="MTA_HANA_1.modelinghdbmod.data::other_facts" modelObjectNameSpace="Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="53" y="14"/>
+      <rectangleSize width="348.4609375"/>
+    </shape>
+    <shape modelObjectName="MTA_HANA_1.modelinghdbmod.views::Union" modelObjectNameSpace="Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="53" y="155"/>
+      <rectangleSize width="325.779296875"/>
+    </shape>
+    <shape modelObjectName="Join" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MTA_HANA_1.modelinghdbmod.views::dimension" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="351.794921875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,6 @@
+COLUMN TABLE "MTA_HANA_1.modelinghdbmod.data::other_facts" 
+(
+   "ID" INTEGER, 
+   "SEASON" VARCHAR(4),
+   "TOP_SCORER_GOALS_SCORED" INTEGER
+)

@@ -1,0 +1,20 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "MTA_HANA_1.modelinghdbmod.data::other_facts",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "MTA_HANA_1.modelinghdbmod.data::soccer_other_facts.csv",
+                "has_header": true
+            },
+            "import_settings": {
+                "import_columns": [
+                    "ID",
+                    "SEASON",
+					"TOP_SCORER_GOALS_SCORED"
+                ]
+            }
+        }
+    ]
+}

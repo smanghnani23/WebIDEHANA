@@ -1,0 +1,15 @@
+FUNCTION "MTA_HANA_1.modelinghdbmod.tablefunctions::letstryfun1"()
+       RETURNS TABLE (
+       	"ID" INTEGER, 
+		"NAME" VARCHAR(100)
+       )
+       LANGUAGE SQLSCRIPT 
+       SQL SECURITY INVOKER AS 
+BEGIN 
+    /*****************************
+        Write your function logic
+    ****************************/
+    RETURN
+    Select "ID","NAME" from Colors;
+    
+END;

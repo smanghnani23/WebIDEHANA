@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="MTA_HANA_1.modelinghdbmod.views::dimension" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="dimension"/>
+<localVariables>
+  <variable id="VAR_1">
+    <descriptions defaultDescription="VAR_1"/>
+    <variableProperties datatype="NVARCHAR" length="50" scale="null" defaultValue="Arsenal FC">
+      <valueDomain type="AttributeValue">
+        <attribute name="TEAM"/>
+      </valueDomain>
+      <selection type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::dims">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::dims</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="MTA_HANA_1.modelinghdbmod.data::dims">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="dims" columnName="ID"/>
+    </attribute>
+    <attribute id="TEAM" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAM"/>
+      <localVariable>VAR_1</localVariable>
+      <keyMapping columnObjectName="dims" columnName="TEAM"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_1" order="3" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_1"/>
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="13">
+        <formula>if(&quot;TEAM&quot; = 'ABCD', 1, 2)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

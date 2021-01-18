@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="MTA_HANA_1.modelinghdbmod.views::UNION_BEHAVIOUR" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="UNION_BEHAVIOUR"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::JoinDuplicate">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::JoinDuplicate</resourceUri>
+  </DataSource>
+  <DataSource id="MTA_HANA_1.modelinghdbmod.data::JoinDuplicate1">
+    <resourceUri>MTA_HANA_1.modelinghdbmod.data::JoinDuplicate1</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MTA_HANA_1.modelinghdbmod.data::JoinDuplicate">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+    </input>
+    <input node="MTA_HANA_1.modelinghdbmod.data::JoinDuplicate1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Union_1" columnName="ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="204"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

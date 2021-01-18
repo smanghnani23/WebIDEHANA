@@ -1,0 +1,5 @@
+COLUMN TABLE "MTA_HANA_1.modelinghdbmod.data::dims" 
+(
+   "ID" INTEGER, 
+   "TEAM" VARCHAR(50)
+)
